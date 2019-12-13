@@ -1,0 +1,296 @@
+<!DOCTYPE html>
+<html lang="zxx">
+{% load static %}
+
+<head>
+<style>
+  .navigation{
+    background-color: gray;
+  }
+</style>
+  <meta charset="utf-8">
+  <title>Educenter</title>
+
+  <!-- mobile responsive meta -->
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <!-- ** Plugins Needed for the Project ** -->
+  <!-- Bootstrap -->
+  <link rel="stylesheet" href="{% static 'plugins/bootstrap/bootstrap.min.css' %}">
+  <!-- slick slider -->
+  <link rel="stylesheet" href="{% static 'plugins/slick/slick.css' %}">
+  <!-- themefy-icon -->
+  <link rel="stylesheet" href="{% static 'plugins/themify-icons/themify-icons.css'%}">
+  <!-- animation css -->
+  <link rel="stylesheet" href="{% static 'plugins/animate/animate.css'%}">
+  <!-- aos -->
+  <!-- venobox popup -->
+  <link rel="stylesheet" href="{% static 'plugins/venobox/venobox.css'%}">
+
+  <!-- Main Stylesheet -->
+  <link href="{% static 'css/style.css'%}">
+
+  {% comment %} <!--Favicon-->
+  <link rel="shortcut icon" href="{%"images/favicon.ico" type="image/x-icon"%}">
+  <link rel="icon" href="{%"images/favicon.ico" type="image/x-icon"%}"> {% endcomment %}
+
+</head>
+
+<body>
+  <a href="{% static 'plugins/bootstrap/bootstrap.min.css' %}"></a>
+  
+
+  <!-- header -->
+  <header class="fixed-top header">
+    <!-- navbar -->
+    <div class="navigation w-100" >
+      <div class="container">
+        <nav class="navbar navbar-expand-lg navbar-light p-0">
+          <a class="navbar-brand" href="{% url 'window:menu'%}"><img src="{% static 'images/logo.png' %}" alt="logo"></a>
+          <button class="navbar-toggler rounded-0" type="button" data-toggle="collapse" data-target="#navigation"
+            aria-controls="navigation" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+          </button>
+
+          <div class="collapse navbar-collapse" id="navigation">
+            <ul class="navbar-nav ml-auto text-center">
+              <li class="nav-item active">
+                <a class="nav-link" href="{% url 'window:menu'%}">Home</a>
+              </li>
+              <li class="nav-item @@about">
+                <a class="nav-link" href="{% url 'window:about'%}">About</a>
+              </li>
+              <li class="nav-item @@courses">
+                <a class="nav-link" href="https://google.com">COURSES</a>
+              </li>
+              <li class="nav-item @@events">
+                <a class="nav-link" href="events.html">EVENTS</a>
+              </li>
+              <li class="nav-item @@blog">
+                <a class="nav-link" href="{% url 'window:myfage'%}">myfage</a>
+              </li>
+              <li class="nav-item dropdown view">
+                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown"
+                  aria-haspopup="true" aria-expanded="false">
+                  지역별
+                </a>
+                <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                  <a class="dropdown-item" href="{% url 'window:incheon' %}">인천</a>
+                  <a class="dropdown-item" href="{% url 'window:seoul' %}">서울</a>
+                  <a class="dropdown-item" href="notice.html">부산</a>
+                  <a class="dropdown-item" href="notice-single.html">Notice Details</a>
+                  <a class="dropdown-item" href="research.html">Research</a>
+                  <a class="dropdown-item" href="scholarship.html">Scholarship</a>
+                  <a class="dropdown-item" href="course-single.html">Course Details</a>
+                  <a class="dropdown-item" href="event-single.html">Event Details</a>
+                  <a class="dropdown-item" href="blog-single.html">Blog Details</a>
+                 
+                </div>
+              </li>
+              <li class="nav-item @@contact">
+                <a class="nav-link" href="contact.html">CONTACT</a>              
+              </li>
+                <li>
+                   {% if user.is_authenticated %}
+                    <a class="btn btn-outline-primary" href="{% url 'accounts:logout' %}">{{user.username}}</a>
+                    {% else %}
+                    <a class="btn btn-outline-dark" href="{% url 'accounts:login' %}">로그인 </a>
+                    <a class="btn btn-outline-dark" href="{% url 'accounts:signup' %}">회원가입</a>
+                    {% endif %}
+                </li>
+            </ul>
+          </div>
+        </nav>
+      </div>
+    </div>
+  </header>
+  <!-- /header -->
+  <!-- Modal -->
+  <div class="modal fade" id="signupModal" tabindex="-1" role="dialog" aria-hidden="true">
+    <div class="modal-dialog modal-lg" role="document">
+      <div class="modal-content rounded-0 border-0 p-4">
+        <div class="modal-header border-0">
+          <h3>Register !!!!!!!!!!!!!!</h3>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <div class="login">
+            <form action="#" class="row">
+              <div class="col-12">
+                <input type="text" class="form-control mb-3" id="signupPhone" name="signupPhone" placeholder="Phone">
+              </div>
+              <div class="col-12">
+                <input type="text" class="form-control mb-3" id="signupName" name="signupName" placeholder="Name">
+              </div>
+              <div class="col-12">
+                <input type="email" class="form-control mb-3" id="signupEmail" name="signupEmail" placeholder="Email">
+              </div>
+              <div class="col-12">
+                <input type="password" class="form-control mb-3" id="signupPassword" name="signupPassword"
+                  placeholder="Password">
+              </div>
+              <div class="col-12">
+                <button type="submit" class="btn btn-primary">SIGN UP</button>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- Modal -->
+  <div class="modal fade" id="loginModal" tabindex="-1" role="dialog" aria-hidden="true">
+    <div class="modal-dialog modal-lg" role="document">
+      <div class="modal-content rounded-0 border-0 p-4">
+        <div class="modal-header border-0">
+          <h3>Login</h3>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <form action="#" class="row">
+            <div class="col-12">
+              <input type="text" class="form-control mb-3" id="loginPhone" name="loginPhone" placeholder="Phone">
+            </div>
+            <div class="col-12">
+              <input type="text" class="form-control mb-3" id="loginName" name="loginName" placeholder="Name">
+            </div>
+            <div class="col-12">
+              <input type="password" class="form-control mb-3" id="loginPassword" name="loginPassword"
+                placeholder="Password">
+            </div>
+            <div class="col-12">
+              <button type="submit" class="btn btn-primary">LOGIN</button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <!-- courses -->
+  <section class="section-sm">
+    <div class="container">
+      <div class="row">
+        <div class="col-12">
+          <div class="d-flex align-items-center section-title justify-content-between">
+            <h2 class="mb-0 text-nowrap mr-3">수강 목록</h2><br><br><br>
+            <div class="border-top w-100 border-primary d-none d-sm-block"></div>
+            <div>
+              <a href="courses.html" class="btn btn-sm btn-primary-outline ml-sm-3 d-none d-sm-block"></a>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- course list -->
+      <div class="row justify-content-center">
+        <!-- course item -->
+        
+        {% for topic in title %}
+        <div class="col-lg-4 col-sm-6 mb-5 item">
+          <div class="card p-0 border-primary rounded-0 hover-shadow">
+            {% if topic.title == '자바' %}
+              <img class="card-img-top rounded-0" src= "{% static 'images/courses/java.jpg' %}" width="300" height="300" alt="course thumb">
+            {% elif topic.title == '클라우드' %}
+              <img class="card-img-top rounded-0" src= "{% static 'images/courses/cloud.jpg' %}" width="300" height="300" alt="course thumb">       
+            {% elif topic.title == '빅데이터' %}
+              <img class="card-img-top rounded-0" src= "{% static 'images/courses/big.jpg' %}" width="300" height="300" alt="course thumb">
+            {% elif topic.title == 'Iot' %}
+              <img class="card-img-top rounded-0" src= "{% static 'images/courses/IOT.jpg' %}" width="300" height="300" alt="course thumb">
+            {% elif topic.title == 'Ai' %}
+              <img class="card-img-top rounded-0" src= "{% static 'images/courses/AI.jpg' %}" width="300" height="300" alt="course thumb">
+            {% elif topic.title == 'Vr' %}
+              <img class="card-img-top rounded-0" src= "{% static 'images/courses/VR.jpg' %}" width="300" height="300" alt="course thumb">
+            {% elif topic.title == 'C언어' %}
+              <img class="card-img-top rounded-0" src= "{% static 'images/courses/C.jpg' %}" width="300" height="300" alt="course thumb">
+            {% elif topic.title == '파이썬' %}
+              <img class="card-img-top rounded-0" src= "{% static 'images/courses/python.jpg' %}"  width="300" height="300" alt="course thumb">
+            {% endif %}
+            <div class="card-body">
+              <ul class="list-inline mb-2">
+                <li class="list-inline-item"><i class="ti-calendar mr-1 text-color"></i></li>
+                <li class="list-inline-item">{{ topic.title }}</i></li>
+              </ul>
+              <a href="{% url 'window:show' topic.title %}">
+                <button class="btn btn-primary btn-sm gogo" data-title="{{ topic.title }}">바로 가기</button>
+              </a>
+            </div>
+          </div>
+        </div>
+        {% endfor %}
+          
+      <!-- /course list -->
+      <!-- mobile see all button -->
+      <div class="row">
+        <div class="col-12 text-center">
+          <a href="courses.html" class="btn btn-sm btn-primary-outline d-sm-none d-inline-block">sell all</a>
+        </div>
+      </div>
+    </div>
+  </section>
+  <!-- /courses -->
+
+  <!-- footer -->
+  <footer>
+    <!-- copyright -->
+    <div class="copyright py-4 bg-footer">
+      <div class="container">
+        <div class="row">
+          <div class="col-sm-7 text-sm-left text-center">
+            <p class="mb-0">Copyright
+              <script>
+                var CurrentYear = new Date().getFullYear()
+                document.write(CurrentYear)
+              </script>
+              © Theme By <a href="#"></a></p> . All Rights Reserved.
+          </div>
+          <div class="col-sm-5 text-sm-right text-center">
+            <ul class="list-inline">
+              <li class="list-inline-item"><a class="d-inline-block p-2" href="https://www.facebook.com/themefisher"><i
+                    class="ti-facebook text-primary"></i></a></li>
+              <li class="list-inline-item"><a class="d-inline-block p-2" href="https://www.twitter.com/themefisher"><i
+                    class="ti-twitter-alt text-primary"></i></a></li>
+              <li class="list-inline-item"><a class="d-inline-block p-2" href="#"><i
+                    class="ti-instagram text-primary"></i></a></li>
+              <li class="list-inline-item"><a class="d-inline-block p-2" href="https://dribbble.com/themefisher"><i
+                    class="ti-dribbble text-primary"></i></a></li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </footer>
+  <!-- /footer -->
+  
+  <!-- jQuery -->
+  <script src="{% static 'plugins/jQuery/jquery.min.js' %}"></script>
+  <!-- Bootstrap JS -->
+  <script src="{% static 'plugins/bootstrap/bootstrap.min.js' %}"></script>
+  <!-- slick slider -->
+  <script src="{% static 'plugins/slick/slick.min.js' %}"></script>
+  <!-- aos -->
+  <script src="{% static 'plugins/aos/aos.js' %}"></script>
+  <!-- venobox popup -->
+  <script src="{% static 'plugins/venobox/venobox.min.js' %}"></script>
+  <!-- mixitup filter -->
+  <script src="{% static 'plugins/mixitup/mixitup.min.js' %}"></script>
+  <!-- google map -->
+  
+  <!-- Main Script -->
+  <script src="{% static 'js/script.js' %}"></script>
+
+  <!--Function 구현 -->
+  <script>
+ 
+  </script>
+
+</body>
+</html>

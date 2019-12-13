@@ -1,0 +1,313 @@
+<!DOCTYPE html>
+<html lang="zxx">
+{% load static %}
+
+<head>
+<style>
+  .navigation{
+    background-color: gray;
+  }
+  .card-body{
+    width: 300px;
+    height: 300px;
+  }
+
+   .card-comment{
+    width: 300px;
+    height: 80px;
+  }
+ 
+</style>
+  <meta charset="utf-8">
+  <title>Educenter</title>
+
+  <!-- mobile responsive meta -->
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <!-- ** Plugins Needed for the Project ** -->
+  <!-- Bootstrap -->
+  <link rel="stylesheet" href="{% static 'plugins/bootstrap/bootstrap.min.css' %}">
+  <!-- slick slider -->
+  <link rel="stylesheet" href="{% static 'plugins/slick/slick.css' %}">
+  <!-- themefy-icon -->
+  <link rel="stylesheet" href="{% static 'plugins/themify-icons/themify-icons.css'%}">
+  <!-- animation css -->
+  <link rel="stylesheet" href="{% static 'plugins/animate/animate.css'%}">
+  <!-- aos -->
+  <!-- venobox popup -->
+  <link rel="stylesheet" href="{% static 'plugins/venobox/venobox.css'%}">
+
+  <!-- Main Stylesheet -->
+  <link href="{% static 'css/style.css'%}">
+
+  {% comment %} <!--Favicon-->
+  <link rel="shortcut icon" href="{%"images/favicon.ico" type="image/x-icon"%}">
+  <link rel="icon" href="{%"images/favicon.ico" type="image/x-icon"%}"> {% endcomment %}
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous"> 
+</head>
+
+<body>
+  <a href="{% static 'plugins/bootstrap/bootstrap.min.css' %}"></a>
+
+
+  <!-- header -->
+  <header class="fixed-top header">
+    <!-- navbar -->
+    <div class="navigation w-100" >
+      <div class="container">
+        <nav class="navbar navbar-expand-lg navbar-light p-0">
+          <a class="navbar-brand" href="index.html"><img src="{% static 'images/logo.png' %}" alt="logo"></a>
+          <button class="navbar-toggler rounded-0" type="button" data-toggle="collapse" data-target="#navigation"
+            aria-controls="navigation" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+          </button>
+
+          <div class="collapse navbar-collapse" id="navigation">
+            <ul class="navbar-nav ml-auto text-center">
+              <li class="nav-item active">
+                <a class="nav-link" href="{% url 'window:menu'%}">Home</a>
+              </li>
+              <li class="nav-item @@about">
+                <a class="nav-link" href="{% url 'window:about'%}">About</a>
+              </li>
+              <li class="nav-item @@courses">
+                <a class="nav-link" href="courses.html">COURSES</a>
+              </li>
+              <li class="nav-item @@events">
+                <a class="nav-link" href="events.html">EVENTS</a>
+              </li>
+              <li class="nav-item @@blog">
+                <a class="nav-link" href="blog.html">BLOG</a>
+              </li>
+              <li class="nav-item dropdown view">
+                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown"
+                  aria-haspopup="true" aria-expanded="false">
+                  Pages
+                </a>
+                <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                  <a class="dropdown-item" href="teacher.html">Teacher</a>
+                  <a class="dropdown-item" href="teacher-single.html">Teacher Single</a>
+                  <a class="dropdown-item" href="notice.html">Notice</a>
+                  <a class="dropdown-item" href="notice-single.html">Notice Details</a>
+                  <a class="dropdown-item" href="research.html">Research</a>
+                  <a class="dropdown-item" href="scholarship.html">Scholarship</a>
+                  <a class="dropdown-item" href="course-single.html">Course Details</a>
+                  <a class="dropdown-item" href="event-single.html">Event Details</a>
+                  <a class="dropdown-item" href="blog-single.html">Blog Details</a>
+                 
+                </div>
+              </li>
+              <li class="nav-item @@contact">
+                <a class="nav-link" href="contact.html">CONTACT</a>              
+              </li>
+                <li>
+                   {% if user.is_authenticated %}
+                    <a class="btn btn-outline-primary" href="{% url 'accounts:logout' %}">{{user.username}}</a>
+                    {% else %}
+                    <a class="btn btn-outline-dark" href="{% url 'accounts:login' %}">로그인 </a>
+                    <a class="btn btn-outline-dark" href="{% url 'accounts:signup' %}">회원가입</a>
+                    {% endif %}
+                </li>
+            </ul>
+          </div>
+        </nav>
+      </div>
+    </div>
+  </header>
+  <!-- /header -->
+  <!-- Modal -->
+  <div class="modal fade" id="signupModal" tabindex="-1" role="dialog" aria-hidden="true">
+    <div class="modal-dialog modal-lg" role="document">
+      <div class="modal-content rounded-0 border-0 p-4">
+        <div class="modal-header border-0">
+          <h3>Register !!!!!!!!!!!!!!</h3>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <div class="login">
+            <form action="#" class="row">
+              <div class="col-12">
+                <input type="text" class="form-control mb-3" id="signupPhone" name="signupPhone" placeholder="Phone">
+              </div>
+              <div class="col-12">
+                <input type="text" class="form-control mb-3" id="signupName" name="signupName" placeholder="Name">
+              </div>
+              <div class="col-12">
+                <input type="email" class="form-control mb-3" id="signupEmail" name="signupEmail" placeholder="Email">
+              </div>
+              <div class="col-12">
+                <input type="password" class="form-control mb-3" id="signupPassword" name="signupPassword"
+                  placeholder="Password">
+              </div>
+              <div class="col-12">
+                <button type="submit" class="btn btn-primary">SIGN UP</button>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- Modal -->
+  <div class="modal fade" id="loginModal" tabindex="-1" role="dialog" aria-hidden="true">
+    <div class="modal-dialog modal-lg" role="document">
+      <div class="modal-content rounded-0 border-0 p-4">
+        <div class="modal-header border-0">
+          <h3>Login</h3>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <form action="#" class="row">
+            <div class="col-12">
+              <input type="text" class="form-control mb-3" id="loginPhone" name="loginPhone" placeholder="Phone">
+            </div>
+            <div class="col-12">
+              <input type="text" class="form-control mb-3" id="loginName" name="loginName" placeholder="Name">
+            </div>
+            <div class="col-12">
+              <input type="password" class="form-control mb-3" id="loginPassword" name="loginPassword"
+                placeholder="Password">
+            </div>
+            <div class="col-12in">
+              <button type="submit" class="btn btn-primary">LOGIN</button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <br>
+  <br>
+ 
+  <!-- courses -->
+  <section class="section-sm">
+    <div class="container">
+      <div class="row">
+        <div class="col-12">
+          <div class="d-flex align-items-center section-title justify-content-between">
+            <h2 class="mb-0 text-nowrap mr-3"><br><br></h2>
+            <div class="border-top w-100 border-primary d-none d-sm-block"></div>
+            <div>
+              <a href="courses.html" class="btn btn-sm btn-primary-outline ml-sm-3 d-none d-sm-block"></a>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- course list -->
+      <div class="row justify-content-center">
+      
+        <!-- course item -->
+      {% for topic in Big_Data %}
+      {% for info in topic.courses.all %}
+      <div class="col-lg-4 col-sm-6 mb-5 item">
+        <input type="hidden" name="csrfmiddlewaretoken" value="{{csrf_token}}">
+          <div class="card p-0 border-primary rounded-0 hover-shadow">
+            <!--텀블 러 이미지
+            <img class="card-img-top rounded-0" src= "{% static 'images/courses/course-1.jpg' %}" alt="course thumb">-->
+            <div class="card-body" >
+              <a href = "{{info.link}}" target="_blank">
+              <h5 class="card-title text-primary">{{ info.academy_title }}
+              </a></h5>
+                <ul class="list-inline mb-2">           
+                  <li class="list-inline-item">{{ info.title }}</li>
+                  <li class="list-inline-item">{{ info.training_date }}</li>
+                  <li class="list-inline-item">{{ info.training_time }}</li>
+                </ul>   
+            </div>
+          </div>
+          <div class="card col-12">
+            <div class="card-comment">
+              <ul class="list-group list-group-flush">
+                <li class="list-group-item">
+                    <!--<form action= "#" class="commentForm" > -->
+                    <form action= "{% url 'window:comment' topic.name %}" class="commentForm" >
+                      <div class="row">
+                        <div class="col-9">
+                          <input type="text" class="form-control commentInput">
+                        </div>
+                        <div class="col-3 text-center">
+                          <input type="submit" class="btn btn-primary" value="쓰기">
+                        </div>
+                      </div>
+                    </form>
+                </li>    
+              </ul>
+            </div>
+          </div>
+        </div>
+      {% endfor %}
+      {% endfor %}
+          
+      <!-- /course list -->
+      <!-- mobile see all button -->
+      <div class="row">
+        <div class="col-12 text-center">
+          <a href="courses.html" class="btn btn-sm btn-primary-outline d-sm-none d-inline-block">sell all</a>
+        </div>
+      </div>
+    </div>
+  </section>
+  <!-- /courses -->
+
+  <!-- footer -->
+  <footer>
+    <!-- copyright -->
+    <div class="copyright py-4 bg-footer">
+      <div class="container">
+        <div class="row">
+          <div class="col-sm-7 text-sm-left text-center">
+            <p class="mb-0">Copyright
+              <script>
+                var CurrentYear = new Date().getFullYear()
+                document.write(CurrentYear)
+              </script>
+              © Theme By <a href="https://themefisher.com">themefisher.com</a></p> . All Rights Reserved.
+          </div>
+          <div class="col-sm-5 text-sm-right text-center">
+            <ul class="list-inline">
+              <li class="list-inline-item"><a class="d-inline-block p-2" href="https://www.facebook.com/themefisher"><i
+                    class="ti-facebook text-primary"></i></a></li>
+              <li class="list-inline-item"><a class="d-inline-block p-2" href="https://www.twitter.com/themefisher"><i
+                    class="ti-twitter-alt text-primary"></i></a></li>
+              <li class="list-inline-item"><a class="d-inline-block p-2" href="#"><i
+                    class="ti-instagram text-primary"></i></a></li>
+              <li class="list-inline-item"><a class="d-inline-block p-2" href="https://dribbble.com/themefisher"><i
+                    class="ti-dribbble text-primary"></i></a></li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </footer>
+  <!-- /footer -->
+  
+  <!-- jQuery -->
+  <script src="{% static 'plugins/jQuery/jquery.min.js' %}"></script>
+  <!-- Bootstrap JS -->
+  <script src="{% static 'plugins/bootstrap/bootstrap.min.js' %}"></script>
+  <!-- slick slider -->
+  <script src="{% static 'plugins/slick/slick.min.js' %}"></script>
+  <!-- aos -->
+  <script src="{% static 'plugins/aos/aos.js' %}"></script>
+  <!-- venobox popup -->
+  <script src="{% static 'plugins/venobox/venobox.min.js' %}"></script>
+  <!-- mixitup filter -->
+  <script src="{% static 'plugins/mixitup/mixitup.min.js' %}"></script>
+  <!-- google map -->
+  
+  <!-- Main Script -->
+  <script src="{% static 'js/script.js' %}"></script>
+
+  <!--Function 구현 -->
+  <script src="https://code.jquery.com/jquery-3.4.1.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
+
+   
+</body>
+</html>
