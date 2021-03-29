@@ -35,7 +35,7 @@ prompt-toolkit==3.0.2
 pusher==2.1.4
 pyasn1==0.4.8
 pycparser==2.19
-Pygments==2.5.2
+Pygments==2.7.4
 pylint==2.4.3
 pylint-django==2.0.12
 pylint-plugin-utils==0.6
